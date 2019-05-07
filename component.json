@@ -1,0 +1,51 @@
+{
+    "title": "Positioning",
+    "description": "Positioning API for making location requests.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/here.com/positioning/1.7.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://pos.api.here.com/positioning/v1",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "post_locate": {
+            "main": "./lib/actions/post_locate.js",
+            "title": "Locate",
+            "description": "Request WGS-84 compliant geocordinates for a location based on 2G/3G/4G cell and/or WLAN measurements.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/post_locate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
